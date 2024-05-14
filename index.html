@@ -7,7 +7,90 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(45deg, black, grey, white, grey, black);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    font-family: Arial, sans-serif;
+    background-image:url(https://media1.giphy.com/media/l2Sq87bt4GOdAnlGo/giphy.gif?cid=6c09b952x3gj546xnefvx3iidpz841sb0q44nmwc619yngwr&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g) ;
 
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.cv-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 100px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden; /* to hide overflow caused by animation */
+    display: flex;
+    background-image:url(https://cdn.britannica.com/15/152315-050-226AA671/twin-towers-skyline-Lower-Manhattan-World-Trade-center.jpg) ;
+}
+
+.left-section {
+    flex: 1;
+    padding-right: 50px;
+    border-right: 2px solid #ccc; /* Add border to the right */
+
+}
+
+.right-section {
+    flex: 2;
+    padding-left: 10px;
+    padding-right: 20px;
+    
+}
+
+.cv-image {
+    width: 150px;
+    height: auto;
+    display: flex;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+}
+
+.section p {
+    margin: 5px 0;
+}
+
+.section strong {
+    color: #007bff;
+}
+
+
+</style>
 <div class="cv-container">
     <div class="left-section">
         <img src="pic.jpg" alt="Tappy" class="cv-image">
@@ -28,7 +111,32 @@
     </div>
 </div>
 
-<script src="index.js"></script>
+<script>
+
+fetch('https://intprog1.onrender.com')
+        .then(response => response.json())
+        .then(data => {
+            const personalInfo = data.personalInfo;
+            document.getElementById('personal-info').innerHTML = `<strong>Name:</strong> ${personalInfo.name}<br>
+                                                                   <strong>Address:</strong> ${personalInfo.address}<br>
+                                                                   <strong>Email:</strong> ${personalInfo.email}<br>
+                                                                   <strong>Phone:</strong> ${personalInfo.phoneNumber}<br>
+                                                                   <strong>Birthdate:</strong> ${personalInfo.birthdate}<br>
+                                                                   <strong>Sex:</strong> ${personalInfo.sex}`;
+
+            const education = data.education;
+            document.getElementById('education').innerHTML = `<strong>Degree:</strong> ${education.degree}<br>
+                                                               <strong>University:</strong> ${education.university}<br>
+                                                               <strong>Year:</strong> ${education.year}`;
+
+            const experience = data.experience[0];
+            document.getElementById('experience').innerHTML = `<strong>Position:</strong> ${experience.position}<br>
+                                                                 <strong>Company:</strong> ${experience.company}<br>
+                                                                 <strong>Year:</strong> ${experience.year}<br>
+                                                                 <strong>Responsibilities:</strong><ul>${experience.responsibilities.map(res => `<li>${res}</li>`).join('')}</ul>`;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+</script>
 
 </body>
 </html>
