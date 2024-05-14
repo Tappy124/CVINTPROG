@@ -20,8 +20,7 @@ body {
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
     font-family: Arial, sans-serif;
-    background-image:url(https://media1.giphy.com/media/l2Sq87bt4GOdAnlGo/giphy.gif?cid=6c09b952x3gj546xnefvx3iidpz841sb0q44nmwc619yngwr&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g) ;
-
+    background-image: url(https://media1.giphy.com/media/l2Sq87bt4GOdAnlGo/giphy.gif?cid=6c09b952x3gj546xnefvx3iidpz841sb0q44nmwc619yngwr&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g);
 }
 
 @keyframes gradientAnimation {
@@ -46,21 +45,19 @@ body {
     position: relative;
     overflow: hidden; /* to hide overflow caused by animation */
     display: flex;
-    background-image:url(https://cdn.britannica.com/15/152315-050-226AA671/twin-towers-skyline-Lower-Manhattan-World-Trade-center.jpg) ;
+    background-image: url(https://cdn.britannica.com/15/152315-050-226AA671/twin-towers-skyline-Lower-Manhattan-World-Trade-center.jpg);
 }
 
 .left-section {
     flex: 1;
     padding-right: 50px;
     border-right: 2px solid #ccc; /* Add border to the right */
-
 }
 
 .right-section {
     flex: 2;
     padding-left: 10px;
     padding-right: 20px;
-    
 }
 
 .cv-image {
@@ -88,8 +85,6 @@ body {
 .section strong {
     color: #007bff;
 }
-
-
 </style>
 <div class="cv-container">
     <div class="left-section">
@@ -112,31 +107,31 @@ body {
 </div>
 
 <script>
-
 fetch('https://intprog1.onrender.com')
-        .then(response => response.json())
-        .then(data => {
-            const personalInfo = data.personalInfo;
-            document.getElementById('personal-info').innerHTML = `<strong>Name:</strong> ${personalInfo.name}<br>
-                                                                   <strong>Address:</strong> ${personalInfo.address}<br>
-                                                                   <strong>Email:</strong> ${personalInfo.email}<br>
-                                                                   <strong>Phone:</strong> ${personalInfo.phoneNumber}<br>
-                                                                   <strong>Birthdate:</strong> ${personalInfo.birthdate}<br>
-                                                                   <strong>Sex:</strong> ${personalInfo.sex}`;
+    .then(response => response.json())
+    .then(data => {
+        const personalInfo = data.personalInfo;
+        document.getElementById('personal-info').innerHTML = `<strong>Name:</strong> ${personalInfo.name}<br>
+                                                               <strong>Address:</strong> ${personalInfo.address}<br>
+                                                               <strong>Email:</strong> ${personalInfo.email}<br>
+                                                               <strong>Phone:</strong> ${personalInfo.phoneNumber}<br>
+                                                               <strong>Birthdate:</strong> ${personalInfo.birthdate}<br>
+                                                               <strong>Sex:</strong> ${personalInfo.sex}`;
 
-            const education = data.education;
-            document.getElementById('education').innerHTML = `<strong>Degree:</strong> ${education.degree}<br>
-                                                               <strong>University:</strong> ${education.university}<br>
-                                                               <strong>Year:</strong> ${education.year}`;
+        const education = data.education;
+        document.getElementById('education').innerHTML = `<strong>Degree:</strong> ${education.degree}<br>
+                                                           <strong>University:</strong> ${education.university}<br>
+                                                           <strong>Year:</strong> ${education.year}<br>
+                                                           <strong>High School:</strong> ${education.highschool}<br>
+                                                           <strong>High School Year:</strong> ${education.yearHighSchool}`;
 
-            const experience = data.experience[0];
-            document.getElementById('experience').innerHTML = `<strong>Position:</strong> ${experience.position}<br>
-                                                                 <strong>Company:</strong> ${experience.company}<br>
-                                                                 <strong>Year:</strong> ${experience.year}<br>
-                                                                 <strong>Responsibilities:</strong><ul>${experience.responsibilities.map(res => `<li>${res}</li>`).join('')}</ul>`;
-        })
-        .catch(error => console.error('Error fetching data:', error));
+        const experience = data.experience[0];
+        document.getElementById('experience').innerHTML = `<strong>Position:</strong> ${experience.position}<br>
+                                                           <strong>Company:</strong> ${experience.company}<br>
+                                                           <strong>Year:</strong> ${experience.year}<br>
+                                                           <strong>Responsibilities:</strong><ul>${experience.responsibilities.map(res => `<li>${res}</li>`).join('')}</ul>`;
+    })
+    .catch(error => console.error('Error fetching data:', error));
 </script>
-
 </body>
 </html>
